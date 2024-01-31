@@ -16,9 +16,9 @@ for item in clock.player.medications:
 print("You have decided to bake a cake from scratch. It's something you've always wanted to try but never got around to.")
 print()
 print("How will you begin?")
-
+print('----------------------------')
 while action_handlers.Go:
-    fullInput = input(">")
+    fullInput = input("> ")
     print()
     action_handlers.ResolveAction(fullInput)
     print()
