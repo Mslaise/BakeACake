@@ -18,21 +18,21 @@ for item in valid_terms:
 #Formatter 
 HELP_DESCRIPTIONS[term_formatter][term_description] = "An abbreviation of an action or object."
 
-
 #Screen 
 HELP_DESCRIPTIONS[term_description][term_description] = "A pop-up window with a graphical representation of something."
 
 #Action
-HELP_DESCRIPTIONS[valid_terms[2]][term_description] = "Something the player can do."
+HELP_DESCRIPTIONS[term_action][term_description] = "Something the player can do."
 
 #Time
-HELP_DESCRIPTIONS[valid_terms[3]][term_description] = "It's time, i'm sure you're familiar with the concept."
+HELP_DESCRIPTIONS[term_time][term_description] = "It's time, i'm sure you're familiar with the concept."
 
+HELP_DESCRIPTIONS[term_gfi][term_description] = "Short for 'Graphical Feedback Interface.'"
 
 #Actions have Formatters and Descriptions
 #Action 'help'
 HELP_DESCRIPTIONS[action_help][term_formatter] = 'ACT ACT1 | FORM1 | TERM1'
-HELP_DESCRIPTIONS[action_help][term_description] = 'Explains either an action, form, or term to the user.'
+HELP_DESCRIPTIONS[action_help][term_description] = 'Explains either an action, formatter, or term to the user.'
 
 #Action 'wait' 
 HELP_DESCRIPTIONS[action_wait][term_formatter] = 'ACT TIME1'
@@ -46,10 +46,15 @@ HELP_DESCRIPTIONS[action_list][term_description] = 'Display all objects that are
 HELP_DESCRIPTIONS[action_exit][term_formatter] = 'ACT'
 HELP_DESCRIPTIONS[action_exit][term_description] = 'Exits the program.'
 
-#Action 'pop'
+#Action 'pops'
 HELP_DESCRIPTIONS[action_pops][term_formatter] = 'ACT SCRN1'
 HELP_DESCRIPTIONS[action_pops][term_description] = 'Pops up a specific screen.'
 
-#Action 'goto'
-HELP_DESCRIPTIONS[action_goto][term_formatter] = form_action+' '+form_room
+#Action 'clear'
+HELP_DESCRIPTIONS[action_clear][term_formatter] = 'ACT'
+HELP_DESCRIPTIONS[action_clear][term_description] = 'Clears the screen.'
+
+#Action 'egfi'
+HELP_DESCRIPTIONS[action_egfi][term_formatter] = 'ACT'
+HELP_DESCRIPTIONS[action_egfi][term_description] = 'Enables the GFI.'
 

@@ -1,25 +1,27 @@
-import action_handlers
-import _clock
-import cocos
+from G_GameInfo import *
+from G_Resources import *
+
+from _gfi import MainGfi
+
+import F_PrintDumps
+from F_ThreadingProcesses import MainLoop
+from F_ThreadingProcesses import TerminalLoop
+from F_InitCocos import InitCocos
 
 
-#MAIN
 
 
-clock = _clock.Clock()
 
+if __name__ == "__main__":
+    act_handle.ACT_Clear() #clear the screen
+                
+    #Intro
+    F_PrintDumps.Intro()
 
-for item in clock.player.medications: 
-    clock.player.TakeMedication(item)
-
-
-print("You have decided to bake a cake from scratch. It's something you've always wanted to try but never got around to.")
-print()
-print("How will you begin?")
-print('----------------------------')
-while action_handlers.Go:
-    fullInput = input("> ")
-    print()
-    action_handlers.ResolveAction(fullInput)
-    print()
-    clock.Tick()
+    #This will execute as long as cocos has not been initialized
+    while act_handle.Go and act_handle.Gfi == False:
+        TerminalLoop()
+        
+    #Once cocos has been initialized
+    if act_handle.Go:
+        InitCocos()

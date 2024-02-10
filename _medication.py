@@ -5,10 +5,31 @@ import _item
 (pill amount), and is either taken in the morning, evening, or both. Medications will have
 random side effects that occur for a random duration at a random interval after you take
 the pill. Medications can have overlapping side effects"""
+
+
+#H = 0  (represents time, in hours, since hour 0)
+#Dc = 0 (arbitrary value from 1 to 15.
+#Db = random number between 1 and 23.
+
+#When H = 0, Dc = 0.
+#When H = Db, Dc = D. 
+#When H = 24, Dc = 0. 
+
+#While H < Db, H should increase by Ra every cycle.
+#While H > Db, H should decrease by Rb every cycle.
+
+#Ra and Rb should only be set once, when they have the minimum required information to be calculated.
+
+#Given this information, could you write this python function?
+#Cycle() - Moves time forward by 1 hour.
+ 
+
+
+
+
 class Medication:
     def __init__(self):
         #Medications are procedurally generated upon instantiation.
-        #
 
         self.refresh_ = False
         self.refresh_amount_ = 0
@@ -88,6 +109,4 @@ class Medication:
         self.SetAbsorbtion()
         self.SetDecay()
 
-    def InitializeDose(self):
-        self.dose = self.ideal_dose * 2
 

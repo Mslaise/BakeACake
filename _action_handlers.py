@@ -4,6 +4,7 @@ import cocos
 import time
 import threading
 import pyglet
+import os
 
 class ActionHandler(pyglet.event.EventDispatcher):
     def __init__(self):
@@ -13,7 +14,9 @@ class ActionHandler(pyglet.event.EventDispatcher):
         
     def ResolveAction(self,fullInput):
         splitInput = fullInput.split()
-        if splitInput[0] in valid_actions:
+        
+        
+        if len(splitInput) > 0 and splitInput[0] in valid_actions:
             if splitInput[0] == action_help:   #Help
                 self.ACT_Help(splitInput[1:])
             elif splitInput[0] == action_wait: #Wait
@@ -26,6 +29,8 @@ class ActionHandler(pyglet.event.EventDispatcher):
                 self.ACT_Egfi(splitInput[1:])
             elif splitInput[0] == action_pops: #Pops
                 self.ACT_Pops(splitInput[1:])
+            elif splitInput[0] == action_clear:
+                self.ACT_Clear()
             else:
                 print('No implementation for',splitInput[0])
         else:
@@ -38,7 +43,6 @@ class ActionHandler(pyglet.event.EventDispatcher):
             print()
             print('For a description of each action, type "help" and then the name of the action.')
         else:
-            print(len(splitInput))
             if splitInput[0] in valid_terms:
                 print('-Term (TERM)-')
             elif splitInput[0] in valid_actions:
@@ -54,11 +58,16 @@ class ActionHandler(pyglet.event.EventDispatcher):
         pass
 
     def ACT_List(self,splitInput):
-        if len(splitInput) == 1:
+        if len(splitInput) == 0:
+            print('-printing valid lists-')
+            for item in valid_lists:
+                print(item)
+            print()
+            print("For more information about what these lists contain, type 'list' and follow it with a valid list name.")
+        else:
             if splitInput[0] in valid_lists:
-                print('-Enumerating '+splitInput[0]+'-')
                 for item in list_map[splitInput[0]]:
-                    print(item)        
+                    print(item)
         
 
     def ACT_Exit(self,splitInput):
@@ -77,6 +86,11 @@ class ActionHandler(pyglet.event.EventDispatcher):
             #This won't actually handle anything with Cocos, that will be done with MainGFI.
             #All this method serves to do is dispatch the popscreen event.
             self.dispatch_event('e_PopScreen',splitInput[0])
+            
+            
+    def ACT_Clear(self):
+        for i in range(100):
+            print()
         
 
 
