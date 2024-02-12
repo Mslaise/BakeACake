@@ -4,18 +4,18 @@
 
 import cocos
 from cocos.actions import *
-from G_GameInfo import *
-from G_Resources import *
+from Globals.game_info import *
+from Globals.resources import *
 import time
 import multiprocessing
 
 
 
 
-class MainGfi(cocos.layer.Layer):
+class Gfi(cocos.layer.Layer):
     def __init__(self,x,y,lock,pipe): #lock and pipe are for communicating with action_handlers
         #Starts the COCOS application
-        super(MainGfi,self).__init__()
+        super(Gfi,self).__init__()
         self.event = True
         self.lock = lock
         self.pipe = pipe

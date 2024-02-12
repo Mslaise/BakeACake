@@ -3,9 +3,9 @@
 
 
 from PIL import Image, ImageDraw, ImageFont
-from G_GameInfo import *
-from G_SpriteInfo import *
-from G_Resources import *
+from Globals.game_info import *
+from Globals.sprite_info import *
+from Globals.resources import *
 
 
 W = UI_inventory_grid_width

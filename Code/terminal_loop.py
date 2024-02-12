@@ -1,6 +1,6 @@
-from G_Resources import act_handle
-from G_Resources import clock
-from G_GameInfo import *
+from Globals.resources import act_handle
+from Globals.resources import clock
+from Globals.game_info import *
 
     
 def TerminalLoop(lock,pipe=None):

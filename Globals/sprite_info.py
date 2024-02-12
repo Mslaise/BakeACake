@@ -1,6 +1,6 @@
 #Since the sprites are used to create game resources they get their own file
 
-from G_Macrory import *
+from Globals.macrory import *
 
 #Font is segoe ui symbol 
 Medicine_ui = {'Char':u"\u2665",'Name':'Medicine'}               #medicine

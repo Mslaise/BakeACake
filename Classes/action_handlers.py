@@ -1,6 +1,6 @@
-from G_Help import *
-from G_Macrory import *
-from G_Resources import *
+from Globals.help import *
+from Globals.macrory import *
+from Globals.resources import *
 import cocos
 import time
 import threading

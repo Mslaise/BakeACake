@@ -1,11 +1,11 @@
-from G_GameInfo import *
-from G_Resources import *
+from Globals.game_info import *
+from Globals.resources import *
 
-from _gfi import MainGfi
+from Classes.gfi import Gfi
 
-import F_PrintDumps
-from F_TerminalLoop import TerminalLoop
-from F_InitCocos import InitCocos
+import Code.print_dumps as print_dumps
+from Code.terminal_loop import TerminalLoop
+from Code.init_cocos import InitCocos
 
 from multiprocessing import Process, Lock, Pipe
 
@@ -16,7 +16,7 @@ if __name__ == "__main__":
     act_handle.ACT_Clear() #clear the screen
                 
     #Intro
-    F_PrintDumps.Intro()
+    print_dumps.Intro()
     #This will execute as long as cocos has not been initialized    
    
     #Setting up communication between the terminal and cocos threads
