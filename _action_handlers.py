@@ -1,21 +1,27 @@
 from G_Help import *
 from G_Macrory import *
+from G_Resources import *
 import cocos
 import time
 import threading
 import pyglet
 import os
 
+
+
+#Last stop between the terminal process and the cocos process.
+#Decodes terminal input and gives instructions to the GFI.
 class ActionHandler(pyglet.event.EventDispatcher):
+    
     def __init__(self):
         super(ActionHandler,self).__init__()
         self.Go = True
         self.Gfi = False
+        self.pipe = None
         
-    def ResolveAction(self,fullInput):
+    def ResolveAction(self,fullInput,lock):
         splitInput = fullInput.split()
-        
-        
+       
         if len(splitInput) > 0 and splitInput[0] in valid_actions:
             if splitInput[0] == action_help:   #Help
                 self.ACT_Help(splitInput[1:])
@@ -25,10 +31,10 @@ class ActionHandler(pyglet.event.EventDispatcher):
                 self.ACT_List(splitInput[1:])
             elif splitInput[0] == action_exit: #Exit
                 self.ACT_Exit(splitInput[1:])
-            elif splitInput[0] == action_egui: #Egfi
+            elif splitInput[0] == action_egfi: #Egfi
                 self.ACT_Egfi(splitInput[1:])
             elif splitInput[0] == action_pops: #Pops
-                self.ACT_Pops(splitInput[1:])
+                self.ACT_Pops(splitInput[1:], lock)
             elif splitInput[0] == action_clear:
                 self.ACT_Clear()
             else:
@@ -69,33 +75,23 @@ class ActionHandler(pyglet.event.EventDispatcher):
                 for item in list_map[splitInput[0]]:
                     print(item)
         
-
     def ACT_Exit(self,splitInput):
         self.Go = False
-        self.dispatch_event('e_Exit')
         
     def ACT_Egfi(self,splitInput):
         if self.Gfi == False:
             self.Gfi = True
-            print('You have activated the GFI. Commands will still be entered through the terminal.')
+            print('You have activated the GFI. Commands can still be entered through the terminal.')
         else:
             print('GFI has already been activated.')
             
-    def ACT_Pops(self,splitInput):
-        if splitInput[0] in valid_screens:
-            #This won't actually handle anything with Cocos, that will be done with MainGFI.
-            #All this method serves to do is dispatch the popscreen event.
-            self.dispatch_event('e_PopScreen',splitInput[0])
-            
+    def ACT_Pops(self,splitInput,lock):
+        #Pipe the event to gfi
+        self.pipe.send('Screen Popped')
+        
+        
             
     def ACT_Clear(self):
         for i in range(100):
             print()
         
-
-
-#Types of events dispatched by ActionHandler
-ActionHandler.register_event_type('e_PopScreen')
-ActionHandler.register_event_type('e_Exit')
-
-act_handle = ActionHandler()

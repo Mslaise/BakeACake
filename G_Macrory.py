@@ -4,8 +4,6 @@ import ctypes
 user_screen_width = ctypes.windll.user32.GetSystemMetrics(0)
 user_scren_height = ctypes.windll.user32.GetSystemMetrics(1)
 
-
-
 #Actions
 action_help = 'help'
 action_wait = 'wait'
@@ -19,10 +17,9 @@ valid_actions = [action_help,action_wait,action_list,action_exit,action_egfi,act
 
 
 #Screens
-screen_inventory = 'inventory'
-screen_mood = 'mood'
-valid_screens = [screen_inventory,screen_mood]
-
+screen_left_hand = 'left-hand'
+screen_right_hand = 'right-hand'
+valid_screens = [screen_left_hand,screen_right_hand]
 
 #Terms
 term_formatter = 'formatter'
