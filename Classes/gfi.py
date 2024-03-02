@@ -59,10 +59,11 @@ class Gfi(cocos.layer.Layer):
         self.lock.release()
     
     def ProcessTerminalEvent(self,event):
-
         if event == 'Screen Popped':
-            pass
-        
+            PopIcon(event)
+            
+    def PopIcon(self,event):
+        pass
                 
             
         

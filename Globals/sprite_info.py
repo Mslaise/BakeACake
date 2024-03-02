@@ -28,6 +28,6 @@ ui = [Medicine_ui,Butter_ui,Sugar_ui,
 
 #Font is segoe ui emoji
 LeftHand_display = {'Char':u"\u270b",'Name':screen_left_hand}
-RightHand_display = {'Char':u"\u270b",'Name':screen_right_hand}
+RightHand_display = {'Char':u"\u270b",'Name':screen_right_hand,'Condition':'Flip'}
 
 display_screens = [LeftHand_display,RightHand_display]
