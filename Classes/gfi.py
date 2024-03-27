@@ -56,10 +56,13 @@ class Gfi(cocos.layer.Layer):
         
     def HearTerminalEvents(self):
         self.lock.acquire()
+        
+        
         if self.pipe.poll():
             event = self.pipe.recv()
             self.ProcessTerminalEvent(event)
-            
+        
+        
         self.lock.release()
         pass
         
@@ -69,6 +72,8 @@ class Gfi(cocos.layer.Layer):
     def ProcessTerminalEvent(self,event):
         if event[0] == 'Screen Popped':
             self.PopIcon(event)
+        if event[0] == 'Second Passed':
+            self.UpdateTimeGraphics(event)
             
     def PopIcon(self,event):
     
@@ -87,6 +92,11 @@ class Gfi(cocos.layer.Layer):
         for i in range(1,len(UI_screen_display_px_coordinates)):
             if self.ui_screen_display_sprites[i] != None:
                 self.ui_screen_display_sprites[i].position = UI_screen_display_px_coordinates[i]
+                
+                
+                
+    def UpdateTimeGraphics(self,event):
+        pass
                 
             
         

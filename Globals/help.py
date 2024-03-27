@@ -25,7 +25,7 @@ HELP_DESCRIPTIONS[term_description][term_description] = "A pop-up window with a 
 HELP_DESCRIPTIONS[term_action][term_description] = "Something the player can do."
 
 #Time
-HELP_DESCRIPTIONS[term_time][term_description] = "It's time, i'm sure you're familiar with the concept."
+HELP_DESCRIPTIONS[term_time][term_description] = "Time passes at a rate of 1 second per second. Even now, time is passing."
 
 HELP_DESCRIPTIONS[term_gfi][term_description] = "Short for 'Graphical Feedback Interface.'"
 

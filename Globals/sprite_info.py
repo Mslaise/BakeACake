@@ -41,7 +41,7 @@ Relationships_content_label = {'Char':u"\u2766",'Name':screen_relationships}
 Medications_content_label = {'Char':u"\u211e",'Name':screen_medications}
 
 display_screens = [LeftHand_content_label,RightHand_content_label,Time_content_label,Relationships_content_label,Medications_content_label]
-display_sprite_fontsize = (math.floor(UI_inventory_grid_height * 1.35))
+display_sprite_fontsize = (math.floor(UI_inventory_grid_height * 1.1))
 
 
 

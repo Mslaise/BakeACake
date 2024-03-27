@@ -18,6 +18,8 @@ class ActionHandler(pyglet.event.EventDispatcher):
         self.Go = True
         self.Gfi = False
         self.pipe = None
+        self.cocosPipe = None
+        self.clockPipe = None
         
     def ResolveAction(self,fullInput,lock):
         splitInput = fullInput.split()

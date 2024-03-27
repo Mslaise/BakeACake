@@ -1,4 +1,5 @@
 from Classes.player import Player
+import time
 
 #Activates game events and contains all game elements
 #BWA WA WA WA WAW AWAWAAWAWAWAWAWAWAW WAWAWAWAAWAWAW WA   WA  WA  WA  AW  WAWAWAWAWAWAW
@@ -59,6 +60,7 @@ class Clock:
 
     def Tick(self):
         self.JumpSecond()
+        
 
         
     
@@ -70,4 +72,9 @@ class Clock:
         pass
     def SetSecond(self):
         pass
+        
+        
+        
+
+
     
