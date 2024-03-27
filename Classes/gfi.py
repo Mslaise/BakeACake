@@ -4,8 +4,10 @@
 
 import cocos
 from cocos.actions import *
+from Globals.macrory import *
 from Globals.game_info import *
 from Globals.resources import *
+from Globals.sprite_info import mood_content_coordinates
 import time
 import multiprocessing
 
@@ -22,9 +24,12 @@ class Gfi(cocos.layer.Layer):
 
         self.ui = cocos.sprite.Sprite('Sprites/UI/InfoScreen/UiCurrent.png')
         self.ui.position = (x,y)
-        self.ui.scale = 1.5        
+        self.ui.scale = 1      
         self.ui_screen_display_sprites = [None,None,None,None]
         self.ui_screen_display_index = 0
+        
+        self.mood_content = cocos.sprite.Sprite(ui_is_content+'/moodHappy.png')
+        self.mood_content.position = mood_content_coordinates
         
         #After instantiation, release the lock back to the terminal thread.
         self.ui.do(CallFunc(self.ReleaseLock))
@@ -32,9 +37,12 @@ class Gfi(cocos.layer.Layer):
         #The lock will release before this function is called, so it'll be skipped
         #Until this instance regains control
         self.ui.do(Repeat(CallFunc(self.HearTerminalEvents)))
-                
-        self.add(self.ui)
         
+        
+        self.add(self.ui)
+        self.add(self.mood_content)
+        
+
     def e_PopScreen(self,screen):
         pass
         
@@ -59,11 +67,26 @@ class Gfi(cocos.layer.Layer):
         self.lock.release()
     
     def ProcessTerminalEvent(self,event):
-        if event == 'Screen Popped':
-            PopIcon(event)
+        if event[0] == 'Screen Popped':
+            self.PopIcon(event)
             
     def PopIcon(self,event):
-        pass
+    
+        #Remove the final sprite in ui_screen_display_sprites
+        if self.ui_screen_display_sprites[-1] != None:
+            self.remove(self.ui_screen_display_sprites[-1])
+            self.ui_screen_display_sprites[-1] = None
+            
+        #Rotate the list
+        self.ui_screen_display_sprites = [self.ui_screen_display_sprites[-1]] + self.ui_screen_display_sprites[:-1]
+        if self.ui_screen_display_sprites[0] == None:
+            self.ui_screen_display_sprites[0] = cocos.sprite.Sprite('Sprites/UI/InfoScreen/ContentLabels/'+event[1][1]+'.png')
+            self.ui_screen_display_sprites[0].position = (UI_screen_display_px_coordinates[0])
+            self.add(self.ui_screen_display_sprites[0])
+        
+        for i in range(1,len(UI_screen_display_px_coordinates)):
+            if self.ui_screen_display_sprites[i] != None:
+                self.ui_screen_display_sprites[i].position = UI_screen_display_px_coordinates[i]
                 
             
         

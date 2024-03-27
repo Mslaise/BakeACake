@@ -24,17 +24,17 @@ class ActionHandler(pyglet.event.EventDispatcher):
        
         if len(splitInput) > 0 and splitInput[0] in valid_actions:
             if splitInput[0] == action_help:   #Help
-                self.ACT_Help(splitInput[1:])
+                self.ACT_Help(splitInput)
             elif splitInput[0] == action_wait: #Wait
-                self.ACT_Wait(splitInput[1:])
+                self.ACT_Wait(splitInput)
             elif splitInput[0] == action_list: #List
-                self.ACT_List(splitInput[1:])
+                self.ACT_List(splitInput)
             elif splitInput[0] == action_exit: #Exit
-                self.ACT_Exit(splitInput[1:])
+                self.ACT_Exit(splitInput)
             elif splitInput[0] == action_egfi: #Egfi
-                self.ACT_Egfi(splitInput[1:])
+                self.ACT_Egfi(splitInput)
             elif splitInput[0] == action_pops: #Pops
-                self.ACT_Pops(splitInput[1:], lock)
+                self.ACT_Pops(splitInput, lock)
             elif splitInput[0] == action_clear:
                 self.ACT_Clear()
             else:
@@ -43,22 +43,22 @@ class ActionHandler(pyglet.event.EventDispatcher):
             print('Invalid action. For a list of valid actions, type "help" or "list action"')
 
     def ACT_Help(self,splitInput):
-        if len(splitInput) < 1:
+        if len(splitInput) < 2:
             for item in valid_actions:
                 print(item+':',HELP_DESCRIPTIONS[item][valid_terms[0]])
             print()
             print('For a description of each action, type "help" and then the name of the action.')
         else:
-            if splitInput[0] in valid_terms:
+            if splitInput[1] in valid_terms:
                 print('-Term (TERM)-')
-            elif splitInput[0] in valid_actions:
+            elif splitInput[1] in valid_actions:
                 print('-Action (ACT)-')
-            elif splitInput[0] in valid_formatters:
+            elif splitInput[1] in valid_formatters:
                 print('-Formatter (FORM)-')
 
-            print(splitInput[0])
-            for entry in HELP_DESCRIPTIONS[splitInput[0]]:
-                print(entry+':',HELP_DESCRIPTIONS[splitInput[0]][entry])
+            print(splitInput[1])
+            for entry in HELP_DESCRIPTIONS[splitInput[1]]:
+                print(entry+':',HELP_DESCRIPTIONS[splitInput[1]][entry])
 
     def ACT_Wait(self,splitInput):
         pass
@@ -71,7 +71,7 @@ class ActionHandler(pyglet.event.EventDispatcher):
             print()
             print("For more information about what these lists contain, type 'list' and follow it with a valid list name.")
         else:
-            if splitInput[0] in valid_lists:
+            if splitInput[1] in valid_lists:
                 for item in list_map[splitInput[0]]:
                     print(item)
         
@@ -81,13 +81,18 @@ class ActionHandler(pyglet.event.EventDispatcher):
     def ACT_Egfi(self,splitInput):
         if self.Gfi == False:
             self.Gfi = True
+            print()
             print('You have activated the GFI. Commands can still be entered through the terminal.')
         else:
             print('GFI has already been activated.')
             
     def ACT_Pops(self,splitInput,lock):
         #Pipe the event to gfi
-        self.pipe.send('Screen Popped')
+        if len(splitInput) == 2 and splitInput[1] in valid_screens:
+            self.pipe.send(('Screen Popped',splitInput))
+        elif splitInput[1] not in valid_screens:
+            print()
+            print("'"+splitInput[1]+"'"+' is not a valid screen.')
         
         
             

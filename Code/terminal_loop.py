@@ -6,7 +6,6 @@ from Globals.game_info import *
 def TerminalLoop(lock,pipe=None):
     #Input loop   
     USER_INPUT = input("> ")
-    print()
     
     if lock.acquire(False):
         lock.release()
@@ -15,9 +14,7 @@ def TerminalLoop(lock,pipe=None):
         act_handle.pipe = pipe
         
     act_handle.ResolveAction(USER_INPUT,lock)
-                                                          #Lock 2
-    print()
-    
+                                                          #Lock 2    
     if lock.acquire(False):
         lock.release()                                    #Release 2
         

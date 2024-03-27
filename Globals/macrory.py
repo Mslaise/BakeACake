@@ -1,4 +1,11 @@
 import ctypes
+ui_is = "Sprites/UI/InfoScreen"
+ui_is_content_labels = "Sprites/UI/InfoScreen/ContentLabels"
+ui_is_content = "Sprites/UI/InfoScreen/Content"
+ui_is_items = "Sprites/UI/InfoScreen/Items"
+ui_is_medications = "Sprites/UI/InfoScreen/medications"
+
+
 
 #Useful constants
 user_screen_width = ctypes.windll.user32.GetSystemMetrics(0)
@@ -19,7 +26,11 @@ valid_actions = [action_help,action_wait,action_list,action_exit,action_egfi,act
 #Screens
 screen_left_hand = 'left-hand'
 screen_right_hand = 'right-hand'
-valid_screens = [screen_left_hand,screen_right_hand]
+screen_time = 'time'
+screen_relationships = 'relationships'
+screen_medications = 'medications'
+
+valid_screens = [screen_left_hand,screen_right_hand,screen_time,screen_relationships,screen_medications]
 
 #Terms
 term_formatter = 'formatter'
