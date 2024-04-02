@@ -7,7 +7,8 @@ class Item:
         self.Rarity = ''
 
 class Inventory:
-    def __init__(self):
+    def __init__(self,cocosPipe):
+        self.cocos_pipe = cocosPipe
         self.edge_length_ = 5
         self.cube_layers_ = ['Item','Occlusion','Link']
         self.dynamics_ = {'Submissive':0,'Dominant':1,'Vanilla':2}
@@ -20,6 +21,11 @@ class Inventory:
         for key in self.cube_layers_:
             if key != 'Item':
                 self.cubes[key] = np.zeros((5,5,5),dtype=int)
+                
+    def InsertItem(self,coor):
+        pass
+    def RemoveItem(self,coor):
+        pass
 
     def CheckRelationByItem(self,specItem):
         #Check to see if the item has any related behavior to other items

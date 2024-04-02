@@ -91,7 +91,7 @@ class ActionHandler(pyglet.event.EventDispatcher):
     def ACT_Pops(self,splitInput,lock):
         #Pipe the event to gfi
         if len(splitInput) == 2 and splitInput[1] in valid_screens:
-            self.pipe.send(('Screen Popped',splitInput))
+            self.cocosPipe.send(('Screen Popped',splitInput))
         elif splitInput[1] not in valid_screens:
             print()
             print("'"+splitInput[1]+"'"+' is not a valid screen.')

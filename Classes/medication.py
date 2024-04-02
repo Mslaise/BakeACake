@@ -1,5 +1,6 @@
 import random
 import math
+import cocos
 from Classes.item import Item
 """You start the game on between 4 and 10 medications. Each medication has a random dosage
 (pill amount), and is either taken in the morning, evening, or both. Medications will have
@@ -10,7 +11,7 @@ the pill. Medications can have overlapping side effects"""
 
 
 class Medication(Item):
-    def __init__(self):
+    def __init__(self,spritePath):
         super(Item,self).__init__()
         #Medications are procedurally generated upon instantiation.
 
@@ -28,17 +29,12 @@ class Medication(Item):
         #Amount of the medication in your system
         self.active_dose = 0
 
-        
-
         self.mood_multiplier_ = 0
-
         self.max_mood_reduction_ = random.randint(1,15)
-
         self.hours_since_taken_ = 0
-
         self.SetHoursToAbsorb()
 
-
+        self.sprite = spritePath
 
 
 
@@ -90,5 +86,9 @@ class Medication(Item):
         self.hours_to_purge_ = hours - self.hours_to_absorb_
         self.SetAbsorbtion()
         self.SetDecay()
+        
+        
+    def GetSprite(self):
+        return self.sprite
 
 

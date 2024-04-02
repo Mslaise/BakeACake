@@ -9,16 +9,16 @@ from Globals.resources import *
 W = UI_inventory_grid_width
 H = UI_inventory_grid_width
 
-for item in display_screens:
+for item in display_screens_sbs:
     new_image = Image.new('RGBA',(W,H),(0,0,0,0))
     myImage = ImageDraw.Draw(new_image)
-    _, _, w, h = myImage.textbbox((0,0),item['Char'],font=Font_UiContentLabel)
+    _, _, w, h = myImage.textbbox((0,0),item.Char,font=Font_UiContentLabel)
     
-    myImage.text(((W-w)/2,(H-h)/2),item['Char'],font=Font_UiContentLabel,fill='black')
+    myImage.text(((W-w)/2,(H-h)/2),item.Char,font=Font_UiContentLabel,fill='black')
 
-    if 'Condition' in item:
-        if item['Condition'] == 'Flip':
-            new_image = new_image.transpose(Image.FLIP_LEFT_RIGHT)
+
+    if item.condition == 'Flip':
+        new_image = new_image.transpose(Image.FLIP_LEFT_RIGHT)
 
     
-    new_image.save(ui_is_content_labels+'/'+item['Name']+'.png','PNG')
+    new_image.save(ui_is_content_labels+'/'+item.Name+'.png','PNG')

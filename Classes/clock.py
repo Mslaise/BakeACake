@@ -4,13 +4,14 @@ import time
 #Activates game events and contains all game elements
 #BWA WA WA WA WAW AWAWAAWAWAWAWAWAWAW WAWAWAWAAWAWAW WA   WA  WA  WA  AW  WAWAWAWAWAWAW
 class Clock:
-    def __init__(self):
-        self.player = Player()
+    def __init__(self,cocosPipe):
+        self.cocos_pipe = cocosPipe
+        self.player = Player(cocosPipe)
         self.day = 0
         self.hour = 0
         self.minute = 0
         self.second = 0
-
+ 
     #Add what happens every day
     def CycleDay(self):
         self.player.CycleDay()
@@ -61,8 +62,9 @@ class Clock:
     def Tick(self):
         self.JumpSecond()
         
-
-        
+    def RelayGfiPackages(self):
+        playerData = self.player.RelayGfiPackages()
+        return playerData
     
     def SetDay(self):
         pass

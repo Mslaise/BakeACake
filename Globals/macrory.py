@@ -3,7 +3,7 @@ ui_is = "Sprites/UI/InfoScreen"
 ui_is_content_labels = "Sprites/UI/InfoScreen/ContentLabels"
 ui_is_content = "Sprites/UI/InfoScreen/Content"
 ui_is_items = "Sprites/UI/InfoScreen/Items"
-ui_is_medications = "Sprites/UI/InfoScreen/medications"
+ui_is_medications = "Sprites/UI/InfoScreen/Medications"
 
 
 

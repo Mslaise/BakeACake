@@ -1,12 +1,17 @@
 import random
 
+
+from Globals.macrory import *
 from Classes.inventory import Inventory
 from Classes.item import Item
 from Classes.bond import Bond
 from Classes.medication import Medication
+from Classes.gfi_package import GfiPackage
+from Classes.gfi_package import GfiFreight
 
 class Player:
-    def __init__(self):
+    def __init__(self,cocosPipe):
+        self.cocos_pipe = cocosPipe
         self.med_debuff_ = 0
         self.max_mood_ = 100
 
@@ -14,9 +19,8 @@ class Player:
         self.valid_mood_types_ = ["Peaceful","Stable","Sensitive","Neurotic"]
 
         self.name = "Addy"
-        self.inventory = Inventory()
+        self.inventory = Inventory(cocosPipe)
         self.bonds = []
-
         self.medications = []
 
         self.mood = self.max_mood_
@@ -84,17 +88,36 @@ class Player:
     def SetMood(self,mood):
         if mood in self.valid_mood_types_:
             self.mood_type = mood
+            
+    def GetMaxMood(self):
+        return self.max_mood_
 
     def InitializeMedications(self):
         #You start the game on between 4 and 10 medications
         amount = random.randint(4,10)
         amount = 1
         for i in range(amount):
-            self.AddMedication(Medication())
+            self.AddMedication(Medication(ui_is_medications+'/medication'+str(i)+'.png'))
         
     def InitializeBonds(self):
         #3 to 8 bonds
         amount = random.randint(3,8)
         for i in range(amount):
             self.AddBond(Bond())
+            
+    #any graphical information that needs to be sent to the GFI from the player is done so here
+    def RelayGfiPackages(self):
+        medicationPackages = self.GatherMedicationPackages()
+        freight = GfiFreight(medicationPackages)
+        return freight
+            
+    def GatherMedicationPackages(self):
+        medicationPackages = []
+        for med in self.medications:
+            medicationPackages.append(GfiPackage(screen_medications,med.sprite))
+ 
+        return medicationPackages
+        
+            
+   
         
